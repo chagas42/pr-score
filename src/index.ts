@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 import { Command } from 'commander'
 import pc from 'picocolors'
 import { resolveConfig } from './config'
