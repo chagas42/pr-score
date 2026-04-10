@@ -1,6 +1,6 @@
 {
   "name": "@chagas42/prs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "bin": {
     "pr-score": "./src/index.ts",
