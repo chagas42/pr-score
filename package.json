@@ -1,12 +1,14 @@
 {
   "name": "@chagas42/prs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "bin": {
     "pr-score": "./src/index.ts",
     "prs": "./src/index.ts"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
     "start": "bun run src/index.ts",
     "dev": "bun --watch run src/index.ts"
@@ -24,7 +26,14 @@
     "type": "git",
     "url": "https://github.com/SalvyLTD/pr-score.git"
   },
-  "keywords": ["github", "pr", "pull-request", "leaderboard", "cli", "team"],
+  "keywords": [
+    "github",
+    "pr",
+    "pull-request",
+    "leaderboard",
+    "cli",
+    "team"
+  ],
   "engines": {
     "bun": ">=1.0.0"
   }
