@@ -1,7 +1,7 @@
 # pr-score
 
-[![npm version](https://img.shields.io/npm/v/pr-score.svg)](https://www.npmjs.com/package/pr-score)
-[![license](https://img.shields.io/npm/l/pr-score.svg)](https://github.com/SalvyLTD/pr-score/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@chagas42/prs.svg)](https://www.npmjs.com/package/@chagas42/prs)
+[![license](https://img.shields.io/npm/l/@chagas42/prs.svg)](https://github.com/chagas42/pr-score/blob/main/LICENSE)
 
 CLI leaderboard for GitHub PR review activity. See who's reviewing the most PRs in your org or team.
 
@@ -15,19 +15,32 @@ npm install -g @chagas42/prs
 bun install -g @chagas42/prs
 ```
 
+## Requirements
+
+- Node.js >= 18 (or Bun >= 1.0)
+- A GitHub account with access to your org
+
+**Optional but recommended:** [GitHub CLI (`gh`)](https://cli.github.com/) — if installed and authenticated, `prs init` reuses your token and login automatically, skipping manual input.
+
+```bash
+# install gh CLI (macOS)
+brew install gh
+gh auth login
+```
+
 ## Setup
 
 Run once to configure your token and org:
 
 ```bash
-pr-score init
+prs init
 ```
 
 You'll be prompted for:
-- A GitHub token with `repo` and `read:org` scopes
-- Your GitHub org
-- (Optional) a team slug to scope to a specific team
-- Your GitHub login, to highlight your row in the output
+- A GitHub token with `repo` and `read:org` scopes — if `gh` CLI is present, this is filled automatically
+- Your GitHub org — fetched from your account automatically
+- (Optional) a team slug — shown as a searchable list
+- Your GitHub login — filled automatically from the token
 
 Config is saved to `~/.pr-score.json`.
 
