@@ -7,6 +7,7 @@ import { render as renderFull } from './display/full'
 import { runInit } from './init'
 import { getCached, saveCache, formatAge } from './cache'
 import { renderDanilera } from './display/danilera'
+import { checkForUpdate } from './update'
 
 const program = new Command()
 
@@ -84,6 +85,7 @@ program
       renderCompact(result.data, config.data, { cached: false, ageMs: 0, streaks })
     }
     if (showDanilera) renderDanilera(result.data, config.data.me)
+    await checkForUpdate()
   })
 
 program.parse()
