@@ -1,6 +1,8 @@
 {
   "name": "@chagas42/prs",
   "version": "0.1.7",
+  "description": "GitHub PR review leaderboard for your team",
+  "author": "chagas42",
   "bin": {
     "pr-score": "./dist/index.js",
     "prs": "./dist/index.js"
@@ -12,7 +14,12 @@
     "build": "tsup",
     "prepublishOnly": "tsup",
     "start": "bun run src/index.ts",
-    "dev": "bun --watch run src/index.ts"
+    "dev": "bun --watch run src/index.ts",
+    "lint": "biome lint src",
+    "lint:fix": "biome lint --write src",
+    "format": "biome format --write src",
+    "format:check": "biome format src",
+    "check:all": "tsc --noEmit && biome check src && pnpm build"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.0.0",
@@ -23,6 +30,8 @@
     "picocolors": "^1.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.11",
+    "@types/node": "^25.6.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.2"
   },
