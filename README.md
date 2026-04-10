@@ -8,11 +8,11 @@ CLI leaderboard for GitHub PR review activity. See who's reviewing the most PRs 
 ## Install
 
 ```bash
-npm install -g pr-score
+npm install -g @chagas42/prs
 ```
 
 ```bash
-bun install -g pr-score
+bun install -g @chagas42/prs
 ```
 
 ## Setup

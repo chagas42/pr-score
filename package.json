@@ -1,5 +1,5 @@
 {
-  "name": "pr-score",
+  "name": "@chagas42/prs",
   "version": "0.1.0",
   "type": "module",
   "bin": {
