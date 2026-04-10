@@ -35,10 +35,10 @@ export function resolveConfig(flags: {
 }): Result<LeaderboardOptions> {
   const file = readConfigFile()
 
-  const token = Bun.env.GITHUB_TOKEN ?? file.token
-  const org = flags.org ?? Bun.env.GITHUB_ORG ?? file.org
-  const team = flags.team ?? Bun.env.GITHUB_TEAM ?? file.team
-  const me = flags.me ?? Bun.env.GITHUB_ME ?? file.me
+  const token = process.env.GITHUB_TOKEN ?? file.token
+  const org = flags.org ?? process.env.GITHUB_ORG ?? file.org
+  const team = flags.team ?? process.env.GITHUB_TEAM ?? file.team
+  const me = flags.me ?? process.env.GITHUB_ME ?? file.me
 
   if (!token) return { ok: false, error: 'Missing GitHub token. Run: pr-score init' }
   if (!org) return { ok: false, error: 'Missing org. Run: pr-score init' }
