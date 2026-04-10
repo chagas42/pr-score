@@ -1,11 +1,17 @@
 # pr-score
 
 [![npm version](https://img.shields.io/npm/v/@chagas42/prs.svg)](https://www.npmjs.com/package/@chagas42/prs)
+[![CI](https://github.com/chagas42/pr-score/actions/workflows/ci.yml/badge.svg)](https://github.com/chagas42/pr-score/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/@chagas42/prs.svg)](https://github.com/chagas42/pr-score/blob/main/LICENSE)
 
 CLI leaderboard for GitHub PR review activity. See who's reviewing the most PRs in your org or team.
 
 ## Install
+
+```bash
+# no install needed
+npx @chagas42/prs init
+```
 
 ```bash
 npm install -g @chagas42/prs
