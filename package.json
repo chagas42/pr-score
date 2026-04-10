@@ -1,6 +1,6 @@
 {
   "name": "@chagas42/prs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "bin": {
     "pr-score": "./dist/index.js",
     "prs": "./dist/index.js"
