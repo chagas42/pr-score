@@ -22,6 +22,7 @@ export function render(scores: MemberScore[], options: LeaderboardOptions, meta:
   const max = scores[0]?.reviews ?? 0
   const BAR_WIDTH = 10
   const myIndex = options.me ? scores.findIndex((s) => s.login === options.me) : -1
+  const maxLoginLen = Math.max(...scores.map((s) => s.login.length), 8)
 
   for (let i = 0; i < scores.length; i++) {
     const score = scores[i]
@@ -35,7 +36,7 @@ export function render(scores: MemberScore[], options: LeaderboardOptions, meta:
     const streak = meta.streaks?.[score.login] ?? 0
     const streakLabel = streak > 0 ? `  🔥${streak}d` : ''
 
-    const line = ` ${rank}  ${score.login.padEnd(12)}  ${bar}  ${count}${streakLabel}${marker}`
+    const line = ` ${rank}  ${score.login.padEnd(maxLoginLen)}  ${bar}  ${count}${streakLabel}${marker}`
 
     if (isMe) {
       console.log(pc.bold(line))
