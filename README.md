@@ -94,32 +94,15 @@ pr-score --refresh
 
 ### Compact view
 
-```
-reviews · this week
-
- 1  ana.lima   ████████  18  🔥3d  ← you
- 2  carlos.m   ██████    14
- 3  priya.r    █████     11
- 4  tiago      ███        7
- 5  mei.chen   █          4
-
-#1/5  ·  lead by +4  ·  pr-score --full for details  ·  fetched just now
-```
+![Compact view](screenshots/compact.png)
 
 ### Full view (`--full`)
 
-```
-PR Review Leaderboard  ·  Apr 02 – Apr 09  ·  acme-corp / frontend
+![Full view](screenshots/full.png)
 
- #   developer    activity      reviews   prs opened   comments   streak
- 1   ana.lima     ██████████         18            5         22   🔥3d
- 2   carlos.m     ████████           14            3         18
- 3   priya.r      ███████            11            7         15
- 4   tiago        █████               7            2          9
- 5   mei.chen     ██                  4            1          6
+### With streaks (`--streak`)
 
-5 members  ·  fetched just now
-```
+![Streak view](screenshots/streak.png)
 
 ## Config priority
 

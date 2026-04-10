@@ -72,7 +72,7 @@ program
             ...(streaks !== undefined && { streaks }),
           });
         } else {
-          renderCompact(cached.data, config.data, {
+          await renderCompact(cached.data, config.data, {
             cached: true,
             ageMs: cached.ageMs,
             ...(streaks !== undefined && { streaks }),
@@ -104,7 +104,7 @@ program
           ...(streaks !== undefined && { streaks }),
         });
       } else {
-        renderCompact(result.data, config.data, {
+        await renderCompact(result.data, config.data, {
           cached: false,
           ageMs: 0,
           ...(streaks !== undefined && { streaks }),
