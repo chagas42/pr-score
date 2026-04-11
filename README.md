@@ -1,4 +1,4 @@
-# pr-score
+# gh-prs
 
 [![npm version](https://img.shields.io/npm/v/@chagas42/prs.svg)](https://www.npmjs.com/package/@chagas42/prs)
 [![CI](https://github.com/chagas42/pr-score/actions/workflows/ci.yml/badge.svg)](https://github.com/chagas42/pr-score/actions/workflows/ci.yml)
