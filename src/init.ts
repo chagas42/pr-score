@@ -4,6 +4,8 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { confirm, input, select } from '@inquirer/prompts';
 import type { Octokit } from '@octokit/rest';
+import pc from 'picocolors';
+import { printBanner } from './display/banner';
 import { createClient } from './github';
 
 const TOKEN_URL =
@@ -152,5 +154,8 @@ export async function runInit(): Promise<void> {
 
   const path = join(homedir(), '.pr-score.json');
   writeFileSync(path, JSON.stringify(config, null, 2), 'utf-8');
-  console.log(`\n✓ saved to ${path}`);
+
+  printBanner();
+  console.log(`  ✓ config saved to ${path}`);
+  console.log(`  run ${pc.bold('prs')} to see your leaderboard\n`);
 }
