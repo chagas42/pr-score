@@ -105,17 +105,26 @@ gh prs --refresh
 
 ## Output
 
-### Compact view
+### Compact view · `gh prs`
 
-![Compact view](screenshots/compact.png)
+<table><tr>
+<td><img src="screenshots/compact.png" width="100%"/></td>
+<td><img src="screenshots/compact-gh.png" width="100%"/></td>
+</tr></table>
 
-### Full view (`--full`)
+### Full view · `gh prs --full`
 
-![Full view](screenshots/full.png)
+<table><tr>
+<td><img src="screenshots/full.png" width="100%"/></td>
+<td><img src="screenshots/full-gh.png" width="100%"/></td>
+</tr></table>
 
-### With streaks (`--streak`)
+### Streaks · `gh prs --streak`
 
-![Streak view](screenshots/streak.png)
+<table><tr>
+<td><img src="screenshots/streak.png" width="100%"/></td>
+<td><img src="screenshots/streak-gh.png" width="100%"/></td>
+</tr></table>
 
 ## Config priority
 
