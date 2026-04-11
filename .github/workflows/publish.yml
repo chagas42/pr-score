@@ -56,8 +56,33 @@ jobs:
       - name: Publish to npm
         run: npm publish --access public --provenance
 
-  publish-gh-extension:
+  build-binaries:
     needs: ci
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            platform: linux-windows
+          - runner: macos-latest
+            platform: darwin
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      - name: Build binaries
+        run: bash scripts/build-gh-extension.sh ${{ matrix.platform }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binaries-${{ matrix.platform }}
+          path: gh-prs-*
+
+  publish-gh-extension:
+    needs: build-binaries
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -66,12 +91,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
-
-      - run: bun install
-
-      - name: Build binaries
-        run: bash scripts/build-gh-extension.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: binaries-*
+          merge-multiple: true
 
       - name: Generate release notes
         id: notes
