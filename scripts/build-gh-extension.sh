@@ -17,7 +17,7 @@ build() {
 }
 
 case "$PLATFORM" in
-  darwin)
+  darwin)ʝ
     build bun-darwin-x64   gh-prs-darwin-amd64
     build bun-darwin-arm64 gh-prs-darwin-arm64
     ;;
