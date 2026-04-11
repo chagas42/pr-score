@@ -70,7 +70,7 @@ export async function buildLeaderboard(
     spinner?.update(`fetching scores for ${members.length} members…`);
     const scores = await fetchAllScores(options.token, members, from, to, options.repo);
     spinner?.stop();
-    banner?.clear();
+    await banner?.clear();
 
     const sorted = scores.sort((a, b) => b.reviews - a.reviews);
     return { ok: true, data: sorted };
