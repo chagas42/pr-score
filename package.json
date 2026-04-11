@@ -38,7 +38,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chagas42/pr-score.git"
+    "url": "https://github.com/chagas42/gh-prs.git"
   },
   "keywords": [
     "github",

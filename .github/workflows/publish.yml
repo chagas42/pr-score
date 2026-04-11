@@ -34,6 +34,8 @@ jobs:
   publish-npm:
     needs: ci
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -53,9 +55,7 @@ jobs:
         run: pnpm build
 
       - name: Publish to npm
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
 
   publish-gh-extension:
     needs: ci
@@ -79,26 +79,33 @@ jobs:
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           PREV_TAG=$(git tag --sort=-version:refname | grep -v "^v${VERSION}$" | head -1)
-          RANGE="${PREV_TAG}..HEAD"
+
+          if [ -n "$PREV_TAG" ]; then
+            RANGE="${PREV_TAG}..HEAD"
+          else
+            RANGE="HEAD"
+          fi
 
           section() {
             local title=$1 pattern=$2
             local lines
-            lines=$(git log "$RANGE" --format="- %s" --grep="^${pattern}" \
-              | sed "s/^- ${pattern}!*: //")
-            [ -n "$lines" ] && printf "## %s\n%s\n\n" "$title" "$lines"
+            lines=$(git log "$RANGE" --format="- %s" -E --grep="^${pattern}" \
+              | sed -E "s/^- [a-z]+(\(.+\))?!?: //")
+            if [ -n "$lines" ]; then
+              printf "## %s\n%s\n\n" "$title" "$lines"
+            fi
           }
 
           {
             section "🚀 Features"      "feat"
             section "🐛 Bug Fixes"     "fix"
             section "📚 Documentation" "docs"
-            section "🔧 Maintenance"   "chore\|ci"
+            section "🔧 Maintenance"   "(chore|ci)"
           } > body.md
 
           echo "body<<EOF" >> "$GITHUB_OUTPUT"
-          cat body.md    >> "$GITHUB_OUTPUT"
-          echo "EOF"     >> "$GITHUB_OUTPUT"
+          cat body.md      >> "$GITHUB_OUTPUT"
+          echo "EOF"       >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
