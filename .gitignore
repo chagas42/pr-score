@@ -4,3 +4,7 @@ bun.lock
 *.local
 .DS_Store
 dist/
+
+gh-prs-darwin**
+gh-prs-linux**
+gh-prs-windows**
