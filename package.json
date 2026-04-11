@@ -19,7 +19,8 @@
     "lint:fix": "biome lint --write src",
     "format": "biome format --write src",
     "format:check": "biome format src",
-    "check:all": "tsc --noEmit && biome check src && pnpm build"
+    "check:all": "tsc --noEmit && biome check src && pnpm build",
+    "install:local": "bash scripts/build-gh-extension.sh local"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.0.0",
