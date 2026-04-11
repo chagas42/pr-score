@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: pnpm build
 
-  publish:
+  publish-npm:
     needs: ci
     runs-on: ubuntu-latest
     steps:
@@ -56,3 +56,29 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-gh-extension:
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      - name: Build binaries
+        run: bash scripts/build-gh-extension.sh
+
+      - name: Create GitHub Release with binaries
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            gh-prs-linux-amd64
+            gh-prs-linux-arm64
+            gh-prs-darwin-amd64
+            gh-prs-darwin-arm64
+            gh-prs-windows-amd64.exe
+            gh-prs
