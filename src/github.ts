@@ -35,10 +35,17 @@ async function getMemberStreak(client: Octokit, login: string): Promise<number> 
 
 export async function fetchAllStreaks(
   client: Octokit,
-  logins: string[]
+  logins: string[],
+  onProgress?: (done: number, total: number) => void
 ): Promise<Record<string, number>> {
+  let done = 0;
   const pairs = await Promise.all(
-    logins.map(async (login) => [login, await getMemberStreak(client, login)] as const)
+    logins.map(async (login) => {
+      const result = [login, await getMemberStreak(client, login)] as const;
+      done++;
+      onProgress?.(done, logins.length);
+      return result;
+    })
   );
   return Object.fromEntries(pairs);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chagas42/prs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "GitHub PR review leaderboard for your team",
   "author": "chagas42",
   "bin": {

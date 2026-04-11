@@ -8,6 +8,17 @@ CLI leaderboard for GitHub PR review activity. See who's reviewing the most PRs 
 
 ## Install
 
+### via gh extension (recommended)
+
+```bash
+gh extension install chagas42/gh-prs
+gh prs
+```
+
+No Node.js required — downloads a self-contained binary for your platform.
+
+### via npm / npx
+
 ```bash
 # no install needed
 npx @chagas42/prs init
@@ -54,7 +65,8 @@ Config is saved to `~/.pr-score.json`.
 
 ```bash
 # compact view (default, this week)
-pr-score
+gh prs
+# or: prs / pr-score
 
 # full table
 pr-score --full
