@@ -64,6 +64,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
 
@@ -72,9 +74,37 @@ jobs:
       - name: Build binaries
         run: bash scripts/build-gh-extension.sh
 
-      - name: Create GitHub Release with binaries
+      - name: Generate release notes
+        id: notes
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          PREV_TAG=$(git tag --sort=-version:refname | grep -v "^v${VERSION}$" | head -1)
+          RANGE="${PREV_TAG}..HEAD"
+
+          section() {
+            local title=$1 pattern=$2
+            local lines
+            lines=$(git log "$RANGE" --format="- %s" --grep="^${pattern}" \
+              | sed "s/^- ${pattern}!*: //")
+            [ -n "$lines" ] && printf "## %s\n%s\n\n" "$title" "$lines"
+          }
+
+          {
+            section "🚀 Features"      "feat"
+            section "🐛 Bug Fixes"     "fix"
+            section "📚 Documentation" "docs"
+            section "🔧 Maintenance"   "chore\|ci"
+          } > body.md
+
+          echo "body<<EOF" >> "$GITHUB_OUTPUT"
+          cat body.md    >> "$GITHUB_OUTPUT"
+          echo "EOF"     >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          body: ${{ steps.notes.outputs.body }}
+          make_latest: true
           files: |
             gh-prs-linux-amd64
             gh-prs-linux-arm64
