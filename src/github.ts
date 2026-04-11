@@ -2,9 +2,10 @@ import { graphql } from '@octokit/graphql';
 import { Octokit } from '@octokit/rest';
 import type { Member, MemberScore } from './types';
 
-async function getMemberStreak(client: Octokit, login: string): Promise<number> {
+async function getMemberStreak(client: Octokit, login: string, org: string): Promise<number> {
   try {
-    const { data } = await client.rest.activity.listPublicEventsForUser({
+    const { data } = await client.rest.activity.listOrgEventsForAuthenticatedUser({
+      org,
       username: login,
       per_page: 100,
     });
@@ -36,12 +37,13 @@ async function getMemberStreak(client: Octokit, login: string): Promise<number> 
 export async function fetchAllStreaks(
   client: Octokit,
   logins: string[],
+  org: string,
   onProgress?: (done: number, total: number) => void
 ): Promise<Record<string, number>> {
   let done = 0;
   const pairs = await Promise.all(
     logins.map(async (login) => {
-      const result = [login, await getMemberStreak(client, login)] as const;
+      const result = [login, await getMemberStreak(client, login, org)] as const;
       done++;
       onProgress?.(done, logins.length);
       return result;

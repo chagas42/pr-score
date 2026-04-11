@@ -31,7 +31,7 @@ export async function buildStreaks(
   const client = createClient(options.token);
 
   if (!process.stdout.isTTY || logins.length === 0) {
-    return fetchAllStreaks(client, logins);
+    return fetchAllStreaks(client, logins, options.org);
   }
 
   const renderProgress = (done: number, total: number) => {
@@ -41,7 +41,7 @@ export async function buildStreaks(
   };
 
   renderProgress(0, logins.length);
-  const result = await fetchAllStreaks(client, logins, renderProgress);
+  const result = await fetchAllStreaks(client, logins, options.org, renderProgress);
   process.stdout.write('\r\x1b[K');
   return result;
 }

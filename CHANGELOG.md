@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-04-09
 
 ### Added
-- Initial release of `pr-score` CLI
+- Initial release of `gh-prs` CLI
 - GitHub PR review leaderboard for org and teams
 - Compact and full table views (`--full`)
 - Time range filtering: `week`, `month`, `quarter`

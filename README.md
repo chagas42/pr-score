@@ -66,28 +66,29 @@ Config is saved to `~/.pr-score.json`.
 ```bash
 # compact view (default, this week)
 gh prs
-# or: prs / pr-score
 
 # full table
-pr-score --full
+gh prs --full
 
 # different time range
-pr-score --range month
-pr-score --range quarter
+gh prs --range month
+gh prs --range quarter
 
 # scope to a specific team or repo
-pr-score --team frontend
-pr-score --repo acme/api
+gh prs --team frontend
+gh prs --repo acme/api
 
 # show review streaks (consecutive days)
-pr-score --streak
+gh prs --streak
 
 # override config inline
-pr-score --org acme-corp --team backend --me ana.lima
+gh prs --org acme-corp --team backend --me ana.lima
 
 # force refresh (ignore cache)
-pr-score --refresh
+gh prs --refresh
 ```
+
+> If installed via npm/bun, replace `gh prs` with `prs` or `pr-score`.
 
 ### All flags
 

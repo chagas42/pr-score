@@ -60,13 +60,13 @@ function buildFooter(
     if (myScore && leaderScore) {
       const lead = myIndex === 0 ? (scores[1] ? myScore.reviews - scores[1].reviews : 0) : 0;
       if (myIndex === 0 && lead >= 0) {
-        footer = `#1/${total}  ·  lead by +${lead}  ·  pr-score --full for details`;
+        footer = `#1/${total}  ·  lead by +${lead}  ·  gh prs --full for details`;
       } else {
-        footer = `#${myIndex + 1}/${total}  ·  behind by ${leaderScore.reviews - myScore.reviews}  ·  pr-score --full for details`;
+        footer = `#${myIndex + 1}/${total}  ·  behind by ${leaderScore.reviews - myScore.reviews}  ·  gh prs --full for details`;
       }
     }
   } else {
-    footer = `${total} members  ·  pr-score --full for details`;
+    footer = `${total} members  ·  gh prs --full for details`;
   }
 
   const fetchedLabel = meta.cached ? `cached · ${formatAge(meta.ageMs)}` : 'fetched just now';
