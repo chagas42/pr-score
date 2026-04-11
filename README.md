@@ -8,7 +8,7 @@ CLI leaderboard for GitHub PR review activity. See who's reviewing the most PRs 
 
 ## Install
 
-### via gh extension (recommended)
+### via gh extension (recommended) 🆕
 
 ```bash
 gh extension install chagas42/gh-prs
